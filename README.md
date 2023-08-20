@@ -10,10 +10,21 @@
         <img src="https://pepy.tech/badge/mckinseysolvegame" /></a>
 </p>
 
-This Python package helps you to solve the Ecosystem Building game from the McKinsey Solve Game. 
+This Python package helps solving the Ecosystem Building game from the McKinsey Solve Game. 
 In this game, you need to find a sustainable chain of 8 species among many species (39 in total). 
 
-This package offers to call the `find_sustainable_food_chain` method that accepts a list of species and returns a solution that maximizes the number of species that can create a sustainable food chain.
+This package provides a function called `find_sustainable_food_chain`, which takes a list of species as input and returns a solution that optimizes the creation of sustainable food chains, maximizing the count of species involved.
+
+## Rules of the Game
+
+A set of 39 species is given. From this set, you need to build a sustainable food chain.
+Species are divided into producers and animals. Producers do not need calories to survive and consume only natural resources. Animals consume other animals and producers and need calories to survive.
+Animals follow the following rules:
+- The species with the highest calories provided eats first.
+- It eats the species providing the highest calories provided as a food source. In case of a tie, it will eat half from each of the two species with the same calories.
+- Eating consumes calories from the food source by the amount needed by the predator. You need calories provided greater than zero for a species to survive and all calories needed equal to zero after they eat.
+
+If a species does not get enough calories or reaches zero with its own calories provided, the food chain is not sustainable.
 
 ## Installation
 
