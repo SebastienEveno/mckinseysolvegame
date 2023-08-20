@@ -13,7 +13,7 @@
 This Python package helps you to solve the Ecosystem Building game from the McKinsey Solve Game. 
 In this game, you need to find a sustainable chain of 8 species among many species (39 in total). 
 
-This package offers to call the `find-sustainable-food-chain` method that accepts a list of species and returns a solution that maximizes the number of species that can create a sustainable food chain.
+This package offers to call the `find_sustainable_food_chain` method that accepts a list of species and returns a solution that maximizes the number of species that can create a sustainable food chain.
 
 ## Installation
 
