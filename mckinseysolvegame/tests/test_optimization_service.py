@@ -230,7 +230,7 @@ def input_examples():
 def test_find_sustainable_food_chain_big_input():
     for i in [10000]:
         current_file_dir = os.path.dirname(__file__)
-        input_file_relative_path = f"./utils/input_examples_{i}.json"
+        input_file_relative_path = f"utils/input_examples_{i}.json"
         input_file_path = os.path.join(current_file_dir, 
                                        input_file_relative_path)
         with open(input_file_path, 'r') as f:
