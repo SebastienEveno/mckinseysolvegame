@@ -36,7 +36,7 @@ pip install mckinseysolvegame
 
 ## Usage
 
-### Define the product
+### Define the input species
 
 ```python
 from mckinseysolvegame import Species
