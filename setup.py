@@ -9,7 +9,7 @@ with open("mckinseysolvegame/_version.py", encoding="utf-8") as fp:
 
 setup(name='mckinseysolvegame',
       version=version['__version__'],
-      description='Python library for solving McKinsey Solve Game',
+      description='Python library for solving the McKinsey Solve Game',
       author='Sebastien Eveno',
       author_email='sebastien.louis.eveno@gmail.com',
       long_description=long_description,
@@ -28,13 +28,11 @@ setup(name='mckinseysolvegame',
       classifiers=[
           'Development Status :: 4 - Beta',
           'Intended Audience :: Developers',
-          'Intended Audience :: Financial and Insurance Industry',
           'License :: OSI Approved :: MIT License',
           'Programming Language :: Python :: 3.10',
           'Operating System :: OS Independent',
           'Intended Audience :: Science/Research',
           'Topic :: Software Development',
-          'Topic :: Office/Business :: Financial',
           'Topic :: Scientific/Engineering :: Information Analysis'
       ]
       )
