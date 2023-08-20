@@ -16,7 +16,7 @@ def generate_input_examples():
         calories_provided = random.randint(100, 6000)
         calories_needed = random.randint(0, 4500)
         food_sources = list(set(
-            [f"Species{random.randint(1, num_examples)}" 
+            [f"Species{random.randint(1, num_examples)}"
              for _ in range(random.randint(0, 10))]))
         example = {
             "name": f"Species{i + 1}",
