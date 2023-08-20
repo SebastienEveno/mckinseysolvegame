@@ -8,8 +8,8 @@ from mckinseysolvegame.domain.models import OptimizationResult, Species
 def test_deserialize_species():
     # Arrange
     species_json = '[{"name": "Species 1", "calories_provided": 2, \
-        "calories_needed": 3, "food_sources": []},' \
-        '{"name": "Species 2", "calories_provided": 4, "calories_needed": 2, \
+        "calories_needed": 3, "depth_range": "", "temperature_range": "", "food_sources": []}, \
+        {"name": "Species 2", "calories_provided": 4, "calories_needed": 2, "depth_range": "", "temperature_range": "", \
             "food_sources": []}]'
 
     # Act
@@ -21,11 +21,15 @@ def test_deserialize_species():
     assert species[0].name == 'Species 1'
     assert species[0].calories_provided == 2
     assert species[0].calories_needed == 3
+    assert species[0].depth_range == ""
+    assert species[0].temperature_range == ""
     assert species[0].food_sources == []
     assert isinstance(species[1], Species)
     assert species[1].name == 'Species 2'
     assert species[1].calories_provided == 4
     assert species[1].calories_needed == 2
+    assert species[0].depth_range == ""
+    assert species[0].temperature_range == ""
     assert species[1].food_sources == []
 
 
@@ -33,7 +37,7 @@ def test_deserialize_species_with_long_name():
     # Arrange
     species_json = '{"name": "A very long contract name that exceeds the \
         maximum length of 64 characters", ' \
-        '"start": 2, "duration": 3, "price": 5}'
+        '"calories_provided": 2, "calories_needed": 3, "depth_range": "", "temperature_range": "", "food_sources": []}'
 
     # Act
     with pytest.raises(ValidationError) as e:
@@ -47,7 +51,7 @@ def test_deserialize_species_with_long_name():
 def test_deserialize_species_with_negative_calories_provided():
     # Arrange
     species_json = '{"name": "Species 1", "calories_provided": -2, \
-        "calories_needed": 3, "food_sources": []}'
+        "calories_needed": 3, "depth_range": "", "temperature_range": "", "food_sources": []}'
     # Act
     with pytest.raises(ValidationError) as e:
         _ = Species.from_json(species_json)
@@ -60,7 +64,7 @@ def test_deserialize_species_with_negative_calories_provided():
 def test_deserialize_species_with_negative_calories_needed():
     # Arrange
     species_json = '{"name": "Species 1", "calories_provided": 1, \
-        "calories_needed": -3, "food_sources": []}'
+        "calories_needed": -3, "depth_range": "", "temperature_range": "", "food_sources": []}'
     # Act
     with pytest.raises(ValidationError) as e:
         _ = Species.from_json(species_json)
@@ -72,24 +76,24 @@ def test_deserialize_species_with_negative_calories_needed():
 
 def test_deserialize_species_with_wrong_type():
     invalid_species = {"name": "invalid", "calories_provided": "not_an_int",
-                       "calories_needed": 10, "food_sources": []}
+                       "calories_needed": 10, "depth_range": "", "temperature_range": "", "food_sources": []}
     with pytest.raises(ValidationError):
         _ = Species.from_json(invalid_species)
 
     invalid_species = {"name": "invalid", "calories_provided": 10,
-                       "calories_needed": "not_an_int", "food_sources": []}
+                       "calories_needed": "not_an_int", "depth_range": "", "temperature_range": "", "food_sources": []}
     with pytest.raises(ValidationError):
         _ = Species.from_json(invalid_species)
 
     invalid_species = {"name": "invalid", "calories_provided": 10,
-                       "calories_needed": 10, "food_sources": [1, ]}
+                       "calories_needed": 10, "depth_range": "", "temperature_range": "", "food_sources": [1, ]}
     with pytest.raises(ValidationError):
         _ = Species.from_json(invalid_species)
 
 
 def test_deserialize_species_with_missing_required_field():
     json_data = '{"name": "Species 1", "calories_provided": 2, \
-        "calories_needed": 3}'
+        "calories_needed": 3, "depth_range": "", "temperature_range": ""}'
     with pytest.raises(ValidationError) as e:
         _ = Species.from_json(json_data)
     assert "food_sources" in e.value.messages
@@ -98,7 +102,7 @@ def test_deserialize_species_with_missing_required_field():
 
 def test_deserialize_species_with_extra_field():
     json_data = '{"name": "Species 1", "calories_provided": 2, \
-        "calories_needed": 3, "food_sources": [], "extra_field": "value"}'
+        "calories_needed": 3, "depth_range": "", "temperature_range": "", "food_sources": [], "extra_field": "value"}'
     with pytest.raises(ValidationError) as error:
         _ = Species.from_json(json_data)
     assert "extra_field" in error.value.messages
@@ -144,12 +148,14 @@ def test_optimization_result_deserialization():
 
 
 def test_serialize_species():
-    species = Species("Species 1", 2, 3, [])
+    species = Species("Species 1", 2, 3, "", "", [])
     serialized = species.to_json("dict")
     expected = {
         "name": "Species 1",
         "calories_provided": 2,
         "calories_needed": 3,
+        "depth_range": "",
+        "temperature_range": "",
         "food_sources": []
     }
     assert serialized == expected

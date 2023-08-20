@@ -5,8 +5,14 @@ from marshmallow import Schema, fields, post_load, validate
 
 MAXIMUM_NUMBER_OF_CHARACTERS_SPECIES_NAME = 64
 
+
 class Species:
-    def __init__(self, name: str, calories_provided: int, calories_needed: int, food_sources: List[str]):
+    def __init__(self, name: str,
+                 calories_provided: int,
+                 calories_needed: int,
+                 depth_range: str,
+                 temperature_range: str,
+                 food_sources: List[str]):
         assert len(name) <= MAXIMUM_NUMBER_OF_CHARACTERS_SPECIES_NAME, \
             f'name should be {MAXIMUM_NUMBER_OF_CHARACTERS_SPECIES_NAME} characters or less'
         self.name = name
@@ -14,6 +20,8 @@ class Species:
         self.calories_provided = calories_provided
         assert calories_needed >= 0, 'calories needed must be a positive integer'
         self.calories_needed = calories_needed
+        self.depth_range = depth_range
+        self.temperature_range = temperature_range
         self.food_sources = food_sources
 
     @classmethod
@@ -46,6 +54,8 @@ class SpeciesSchema(Schema):
                       allow_none=False)
     calories_provided = fields.Int(required=True, validate=validate.Range(min=1), allow_none=False)
     calories_needed = fields.Int(validate=validate.Range(min=0), allow_none=False)
+    depth_range = fields.Str(required=True, allow_none=False)
+    temperature_range = fields.Str(required=True, allow_none=False)
     food_sources = fields.List(fields.Str(validate=validate.Length(max=MAXIMUM_NUMBER_OF_CHARACTERS_SPECIES_NAME)), required=True)
 
     @post_load

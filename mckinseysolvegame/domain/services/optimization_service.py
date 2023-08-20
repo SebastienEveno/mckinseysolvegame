@@ -1,4 +1,7 @@
+from itertools import groupby
 from typing import List
+
+import numpy as np
 
 from mckinseysolvegame.domain.models import Species, OptimizationResult
 
@@ -6,6 +9,28 @@ from mckinseysolvegame.domain.models import Species, OptimizationResult
 class Solver:
     @staticmethod
     def find_sustainable_food_chain(species_list: List[Species]) -> OptimizationResult:
+        # Check that input is consistent
+        # ...
+
+        if not species_list:
+            return OptimizationResult(0, [])
+
+        # Find the group of producers that maximize the calories provided
+        producers = [s for s in species_list if s.calories_needed == 0]
+        grouped_producers = {key: list(group) for key, group in groupby(producers, key=lambda x: x.depth_range)}
+
+        depth_range_calories = {}
+        for depth_range, producers_group in grouped_producers.items():
+            total_calories = sum(species.calories_provided for species in producers_group)
+            depth_range_calories[depth_range] = total_calories
+
+        # Find the depth range with the highest total calories
+        highest_calories_range = max(depth_range_calories, key=depth_range_calories.get)
+
+        # Restrict the list of species to the list of species with matching depth_range
+        species_list = [s for s in species_list if s.depth_range == highest_calories_range]
+
+        # Find sustainable food chain
         n = len(species_list)
         species_list.sort(key=lambda x: x.calories_provided, reverse=True)
         dp = [1] * n
