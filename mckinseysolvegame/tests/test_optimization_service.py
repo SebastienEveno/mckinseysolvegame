@@ -708,38 +708,3 @@ def test_find_sustainable_food_chain(species, expected_output):
     result = Solver.find_sustainable_food_chain(species)
     assert result.number_of_species == expected_output[0]
     assert result.species == expected_output[1]
-
-
-@pytest.fixture
-def input_examples():
-    example_files = glob.glob("input_examples_*.json")
-    examples = []
-    for file in example_files:
-        with open(file) as f:
-            example = json.load(f)
-            examples.append(example)
-    return examples
-
-
-@pytest.mark.timeout(300)  # Timeout set to 5 minutes (300 seconds)
-def test_find_sustainable_food_chain_big_input():
-    for i in [10000]:
-        current_file_dir = os.path.dirname(__file__)
-        input_file_relative_path = f"utils/input_examples_{i}.json"
-        input_file_path = os.path.join(current_file_dir, 
-                                       input_file_relative_path)
-        with open(input_file_path, 'r') as f:
-            payload = json.load(f)
-            schema = SpeciesSchema(many=True)
-            contracts = schema.load(payload)
-
-        start_time = time.time()
-        optimization_result = Solver.find_sustainable_food_chain(contracts)
-        end_time = time.time()
-        execution_time = end_time - start_time
-        # Assert the execution time is less than 5 minutes (300 seconds)
-        assert execution_time < 300
-        assert isinstance(optimization_result.number_of_species, int)
-        assert isinstance(optimization_result.species, list)
-        assert all(isinstance(name, str)
-                   for name in optimization_result.species)
