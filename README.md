@@ -77,3 +77,8 @@ If you would like to contribute code, please submit a pull request.
 ## License
 
 mckinseysolvegame is released under the [MIT License](https://opensource.org/licenses/MIT).
+
+## To Do List
+Currently, we assume that the input is a subset of the 39 species. We assume that the input is made of only 3 producers (the ones for which the sum of calories provided is maximum).
+- Consider a list of 39 input species, not just 13 (3 producers + 10 animals)
+- Consider the case eating half of calories provided in case of a tie
