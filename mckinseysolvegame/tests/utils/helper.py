@@ -1,9 +1,13 @@
 import json
+import os
 import random
 
 num_examples = 10000
 # num_examples = 500000
-output_file = f"input_examples_{num_examples}.json"
+current_file_dir = os.path.dirname(__file__)
+input_file_relative_path = f"input_examples_{num_examples}.json"
+output_file_path = os.path.join(current_file_dir,
+                                input_file_relative_path)
 
 
 def generate_input_examples():
@@ -12,7 +16,8 @@ def generate_input_examples():
         calories_provided = random.randint(100, 6000)
         calories_needed = random.randint(0, 4500)
         food_sources = list(set(
-            [f"Species{random.randint(1, num_examples)}" for _ in range(random.randint(0, 10))]))
+            [f"Species{random.randint(1, num_examples)}" 
+             for _ in range(random.randint(0, 10))]))
         example = {
             "name": f"Species{i + 1}",
             "calories_provided": calories_provided,
@@ -20,7 +25,7 @@ def generate_input_examples():
             "food_sources": food_sources
         }
         examples.append(example)
-    with open(output_file, "w") as f:
+    with open(output_file_path, "w") as f:
         json.dump(examples, f, indent=4)
 
 
