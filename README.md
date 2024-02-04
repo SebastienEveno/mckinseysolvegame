@@ -375,7 +375,7 @@ result.to_json()
 The API will return a JSON object with the following format:
 ```json
 {
-    "number_of_species": 9,
+    "numberOfSpecies": 9,
     "species": [
         "Fire Coral", 
         "Common Eel Grass", 
