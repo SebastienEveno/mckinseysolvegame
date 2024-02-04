@@ -42,11 +42,46 @@ pip install mckinseysolvegame
 from mckinseysolvegame import Species
 
 my_species = [
-    Species(name="Producer1", calories_provided=4000, calories_needed=0, depth_range="0-30m", temperature_range="28.3-30", food_sources=[]),
-    Species(name="Producer2", calories_provided=4050, calories_needed=0, depth_range="0-30m", temperature_range="28.3-30", food_sources=[]),
-    Species(name="Producer3", calories_provided=5000, calories_needed=0, depth_range="0-30m", temperature_range="28.3-30", food_sources=[]),
-    Species(name="Animal1", calories_provided=1000, calories_needed=1050, depth_range="0-30m", temperature_range="28.3-30", food_sources=["Producer1"]),
-    Species(name="Animal2", calories_provided=800, calories_needed=900, depth_range="0-30m", temperature_range="28.3-30", food_sources=["Animal1", "Producer3"])
+    Species(
+        name="Producer1", 
+        calories_provided=4000, 
+        calories_needed=0, 
+        depth_range="0-30m", 
+        temperature_range="28.3-30", 
+        food_sources=[]
+    ),
+    Species(
+        name="Producer2", 
+        calories_provided=4050, 
+        calories_needed=0, 
+        depth_range="0-30m", 
+        temperature_range="28.3-30", 
+        food_sources=[]
+    ),
+    Species(
+        name="Producer3", 
+        calories_provided=5000, 
+        calories_needed=0, 
+        depth_range="0-30m", 
+        temperature_range="28.3-30", 
+        food_sources=[]
+    ),
+    Species(
+        name="Animal1", 
+        calories_provided=1000, 
+        calories_needed=1050, 
+        depth_range="0-30m", 
+        temperature_range="28.3-30", 
+        food_sources=["Producer1"]
+    ),
+    Species(
+        name="Animal2", 
+        calories_provided=800, 
+        calories_needed=900, 
+        depth_range="0-30m", 
+        temperature_range="28.3-30", 
+        food_sources=["Animal1", "Producer3"]
+    )
 ]
 ```
 
