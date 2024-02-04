@@ -3,6 +3,21 @@ from typing import List
 
 from marshmallow import Schema, fields, post_load, validate
 
+
+def camelcase(s):
+    parts = iter(s.split("_"))
+    return next(parts) + "".join(i.title() for i in parts)
+
+
+class CamelCaseSchema(Schema):
+    """Schema that uses camel-case for its external representation
+    and snake-case for its internal representation.
+    """
+
+    def on_bind_field(self, field_name, field_obj):
+        field_obj.data_key = camelcase(field_obj.data_key or field_name)
+
+
 MAXIMUM_NUMBER_OF_CHARACTERS_SPECIES_NAME = 64
 
 
@@ -46,7 +61,7 @@ class Species:
             raise NotImplementedError(f"Invalid format type \'{format_type}\' during serialization")
 
 
-class SpeciesSchema(Schema):
+class SpeciesSchema(CamelCaseSchema):
     """
         A marshmallow schema for the Species class.
     """
@@ -97,7 +112,7 @@ class OptimizationResult:
             raise NotImplementedError(f"Invalid format type \'{format_type}\' during serialization")
 
 
-class OptimizationResultSchema(Schema):
+class OptimizationResultSchema(CamelCaseSchema):
     """
         Marshmallow schema for deserializing and serializing OptimizationResult objects.
     """

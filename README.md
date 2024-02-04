@@ -97,8 +97,18 @@ result.to_json()
 The API will return a JSON object with the following format:
 ```json
 {
-    "number_of_species": 5,
-    "species": ["Producer3", "Producer2", "Producer1", "Animal1", "Animal2"]
+    "numberOfSpecies": 9,
+    "species": [
+        "Fire Coral", 
+        "Common Eel Grass", 
+        "Widgeon Grass",
+        "Queen Parrotfish", 
+        "Blue Striped Angelfish",
+        "Common Dolphinfish", 
+        "Wahoo", 
+        "Short-tail Stingray",
+        "Gem Tang"
+    ]
 }
 ```
 This object contains the maximum number of species that can sustain, as well as the list of species names.
