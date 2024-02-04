@@ -17,7 +17,7 @@ class Solver:
             return OptimizationResult(0, [])
 
         # Find sustainable food chain
-        species = self.get_optimal_species_group(species)
+        species = Solver.get_optimal_species_group(species)
         n = len(species)
         species.sort(key=lambda x: x.calories_provided, reverse=True)
         dp = [1] * n
