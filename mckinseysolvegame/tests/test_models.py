@@ -71,7 +71,7 @@ def test_deserialize_species_with_negative_calories_needed():
     # Assert
     assert 'caloriesNeeded' in e.value.messages
     assert 'Must be greater than or equal to 0.' \
-        in e.value.messages['calories_needed']
+        in e.value.messages['caloriesNeeded']
 
 
 def test_deserialize_species_with_wrong_type():
