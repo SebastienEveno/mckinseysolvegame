@@ -39,17 +39,15 @@ class Solver:
         # Initialize sets to track unique species and unique chains
         unique_species = set()
         all_chains.sort(key=lambda x: len(x), reverse=True)
-        unique_chains = []
 
         # Find chains containing producers and no duplicate species
         producers_indices = [i for i, species in enumerate(species) if species.calories_needed == 0]
         for chain in all_chains:
             if not any(val in unique_species for val in chain) and any(idx in chain for idx in producers_indices):
-                unique_chains.append(chain)
                 unique_species.update(chain)
 
         # Create a list of selected species based on unique chains
-        selected_species = [species[i] for i in [x for c in unique_chains for x in c]]
+        selected_species = [species[i] for i in unique_species]
 
         # Sort selected species based on calories provided
         selected_species.sort(key=lambda x: x.calories_provided, reverse=True)
