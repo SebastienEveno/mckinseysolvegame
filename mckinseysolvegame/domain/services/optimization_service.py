@@ -58,6 +58,9 @@ class Solver:
     def get_optimal_species_group(species: List[Species]) -> List[Species]:
         # Find the group of producers that maximize the calories provided
         producers = [s for s in species if s.calories_needed == 0]
+        
+        # Need to sort the producers list first, otherwise iterating over groupby does not work
+        producers.sort(key=lambda x: x.depth_range)
         grouped_producers = {key: list(group) for key, group in groupby(producers, key=lambda x: x.depth_range)}
 
         total_calories_per_depth_range = {}
