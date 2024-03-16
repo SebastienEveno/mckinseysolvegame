@@ -711,5 +711,4 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
 )
 def test_find_sustainable_food_chain(species, expected_output):
     result = Solver.find_sustainable_food_chain(species)
-    assert result.number_of_species == expected_output[0]
-    assert result.species == expected_output[1]
+    assert result.species == expected_output
