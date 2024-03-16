@@ -14,7 +14,7 @@ class Solver:
         # ...
 
         if not species:
-            return OptimizationResult(0, [])
+            return OptimizationResult([])
 
         # Find sustainable food chain
         species = Solver.get_optimal_species_group(species)
@@ -52,7 +52,7 @@ class Solver:
         # Sort selected species based on calories provided
         selected_species.sort(key=lambda x: x.calories_provided, reverse=True)
 
-        return OptimizationResult(len(selected_species), [s.name for s in selected_species])
+        return OptimizationResult([s.name for s in selected_species])
     
     @staticmethod
     def get_optimal_species_group(species: List[Species]) -> List[Species]:

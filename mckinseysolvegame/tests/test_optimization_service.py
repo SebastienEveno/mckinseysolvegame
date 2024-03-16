@@ -14,7 +14,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
     [
         (
             [],
-            (0, [])
+            []
         ),
         (
             [
@@ -25,7 +25,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="Temperature",
                         food_sources=[])
             ],
-            (1, ['Species1'])
+            ['Species1']
         ),
         (
             [
@@ -48,7 +48,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="Temperature",
                         food_sources=[])
             ],
-            (3, ['Species3', 'Species2', 'Species1'])
+            ['Species3', 'Species2', 'Species1']
         ),
         (
             [
@@ -77,7 +77,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="Temperature",
                         food_sources=["Producer1", "Producer2", "Producer3"])
             ],
-            (4, ['Producer3', 'Producer2', 'Producer1', 'Animal1'])
+            ['Producer3', 'Producer2', 'Producer1', 'Animal1']
         ),
         (
             # Test case: only one animal - only one food source but cannot eat
@@ -108,7 +108,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="Temperature",
                         food_sources=["Producer1"])
             ],
-            (3, ['Producer3', 'Producer2', 'Producer1'])
+            ['Producer3', 'Producer2', 'Producer1']
         ),
         (
             [
@@ -133,7 +133,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="Temperature",
                         food_sources=["Animal3"])
             ],
-            (3, ['Animal1', 'Animal3', 'Animal4'])
+            ['Animal1', 'Animal3', 'Animal4']
         ),
         (
             [
@@ -174,7 +174,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="Temperature",
                         food_sources=["Animal5"]),
             ],
-            (5, ['Animal1', 'Animal2', 'Animal4', 'Animal5', 'Animal6'])
+            ['Animal1', 'Animal2', 'Animal4', 'Animal5', 'Animal6']
         ),
         (
             # Test case: only one animal - calories needed higher than
@@ -205,7 +205,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="Temperature",
                         food_sources=["Producer1"])
             ],
-            (3, ['Producer3', 'Producer2', 'Producer1'])
+            ['Producer3', 'Producer2', 'Producer1']
         ),
         (
             # Test case: two animals - the two eat different producers
@@ -241,7 +241,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="Temperature",
                         food_sources=["Producer2"])
             ],
-            (5, ['Producer3', 'Producer2', 'Producer1', 'Animal2', 'Animal1'])
+            ['Producer3', 'Producer2', 'Producer1', 'Animal2', 'Animal1']
         ),
         (
             # Test case: two animals - Animal2 cannot eat Animal1
@@ -277,7 +277,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="Temperature",
                         food_sources=["Animal1"])
             ],
-            (4, ['Producer3', 'Producer2', 'Producer1', 'Animal1'])
+            ['Producer3', 'Producer2', 'Producer1', 'Animal1']
         ),
         (
             # Test case: two animals - Animal2 can eat Animal1
@@ -313,7 +313,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="Temperature",
                         food_sources=["Animal1"])
             ],
-            (5, ['Producer3', 'Producer2', 'Producer1', 'Animal1', 'Animal2'])
+            ['Producer3', 'Producer2', 'Producer1', 'Animal1', 'Animal2']
         ),
         (
             # Test case: two animals - Animal2 can eat Animal1, Producer3
@@ -349,7 +349,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="Temperature",
                         food_sources=["Animal1", "Producer3"])
             ],
-            (5, ['Producer3', 'Producer2', 'Producer1', 'Animal1', 'Animal2'])
+            ['Producer3', 'Producer2', 'Producer1', 'Animal1', 'Animal2']
         ),
         (
             [
@@ -695,14 +695,17 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         calories_needed=2100,
                         depth_range="0-30m",
                         temperature_range="28.3-30",
-                        food_sources=["Queen Parrotfish"])
+                        food_sources=[
+                            "Queen Parrotfish"
+                            ]
+                        )
             ],
-            (9, ['Fire Coral', 'Widgeon Grass', 'Common Eel Grass',
-                 'Queen Parrotfish', 'Blue Striped Angelfish',
-                 'Common Dolphinfish', 'Wahoo', 'Short-tail Stingray',
-                 'Gem Tang'
-                ]
-            )
+            [
+                'Fire Coral', 'Widgeon Grass', 'Common Eel Grass',
+                'Queen Parrotfish', 'Blue Striped Angelfish',
+                'Common Dolphinfish', 'Wahoo', 'Short-tail Stingray',
+                'Gem Tang'
+            ]
         )
     ]
 )
