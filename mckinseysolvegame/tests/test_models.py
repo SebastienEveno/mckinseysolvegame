@@ -112,13 +112,11 @@ def test_deserialize_species_with_extra_field():
 def test_optimization_result_deserialization():
     # Test valid deserialization
     input_data = {
-        'numberOfSpecies': 3,
         'species': ['Species1', 'Species2', 'Species3']
     }
     try:
         result = OptimizationResult.from_json(input_data)
         assert isinstance(result, OptimizationResult)
-        assert result.number_of_species == 3
         assert result.species == ['Species1', 'Species2', 'Species3']
     except ValidationError:
         pytest.fail('Deserialization should not raise an error.')
@@ -126,8 +124,6 @@ def test_optimization_result_deserialization():
     # Test deserialization with missing required fields
     invalid_data = [
         {},
-        {'numberOfSpecies': 3},
-        {'species': ['Species1', 'Species2']},
     ]
     for data in invalid_data:
         with pytest.raises(ValidationError):
@@ -135,10 +131,8 @@ def test_optimization_result_deserialization():
 
     # Test deserialization with invalid field types
     invalid_data = [
-        {'numberOfSpecies': 'Invalid number of species type',
-            'species': ['Species1', 'Species2', 'Species3']},
-        {'numberOfSpecies': 1, 'species': 'Contract1'},
-        {'numberOfSpecies': 2, 'species': ['Contract1', 2, 'Contract3']},
+        {'species': 'Contract1'},
+        {'species': ['Contract1', 2, 'Contract3']},
     ]
     for data in invalid_data:
         with pytest.raises(ValidationError):
@@ -163,12 +157,10 @@ def test_serialize_species():
 
 def test_optimization_result_serialization():
     # Test valid serialization
-    result = OptimizationResult(number_of_species=3, species=[
-                                'Species1', 'Species2', 'Species3'])
+    result = OptimizationResult(species=['Species1', 'Species2', 'Species3'])
     try:
         serialized = result.to_json()
         assert isinstance(serialized, dict)
-        assert serialized == {'numberOfSpecies': 3, 'species': [
-            'Species1', 'Species2', 'Species3']}
+        assert serialized == {'species': ['Species1', 'Species2', 'Species3']}
     except ValidationError:
         pytest.fail('Serialization should not raise an error.')

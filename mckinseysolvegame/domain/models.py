@@ -83,11 +83,9 @@ class OptimizationResult:
         Class representing the result of the sustainable chain of species.
 
         Attributes:
-            number_of_species (int): The total number of species in the sustainable food chain.
             species (List[str]): The list of species names ordered by their calories provided.
     """
-    def __init__(self, number_of_species: int, species: List[str]):
-        self.number_of_species = number_of_species
+    def __init__(self, species: List[str]):
         self.species = species
 
     @classmethod
@@ -116,7 +114,6 @@ class OptimizationResultSchema(CamelCaseSchema):
     """
         Marshmallow schema for deserializing and serializing OptimizationResult objects.
     """
-    number_of_species = fields.Integer(required=True)
     species = fields.List(fields.String(), required=True)
 
     @post_load
