@@ -5,7 +5,7 @@ import time
 
 import pytest
 
-from mckinseysolvegame.domain.models import Species, SpeciesSchema
+from mckinseysolvegame.domain.models import Species
 from mckinseysolvegame.domain.services.optimization_service import Solver
 
 
@@ -697,10 +697,12 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="28.3-30",
                         food_sources=["Queen Parrotfish"])
             ],
-            (9, ['Fire Coral', 'Common Eel Grass', 'Widgeon Grass',
+            (9, ['Fire Coral', 'Widgeon Grass', 'Common Eel Grass',
                  'Queen Parrotfish', 'Blue Striped Angelfish',
                  'Common Dolphinfish', 'Wahoo', 'Short-tail Stingray',
-                 'Gem Tang'])
+                 'Gem Tang'
+                ]
+            )
         )
     ]
 )
