@@ -400,6 +400,3 @@ If you would like to contribute code, please submit a pull request.
 ## License
 
 mckinseysolvegame is released under the [MIT License](https://opensource.org/licenses/MIT).
-
-## To Do List
-- Consider the case eating half of calories provided in case of a tie
