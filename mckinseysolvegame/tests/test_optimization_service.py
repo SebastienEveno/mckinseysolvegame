@@ -1,8 +1,3 @@
-import glob
-import json
-import os
-import time
-
 import pytest
 
 from mckinseysolvegame.domain.models import Species
@@ -428,7 +423,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                             "Powder Blue Tang",
                             "Flame Angelfish",
                             "Eyestripe Surgeonfish"
-                            ]
+                        ]
                         ),
                 Species(name="Bicolour Angelfish",
                         calories_provided=1900,
@@ -441,7 +436,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                             "Eyestripe Surgeonfish",
                             "Stalked Kelp",
                             "Purple Hydrocoral"
-                            ]
+                        ]
                         ),
                 Species(name="Bicolour Parrotfish",
                         calories_provided=3400,
@@ -452,7 +447,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                             "Widgeon Grass",
                             "Common Eel Grass",
                             "Fire Coral"
-                            ]
+                        ]
                         ),
                 Species(name="Wahoo",
                         calories_provided=1700,
@@ -462,7 +457,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         food_sources=[
                             "Short-tail Stingray",
                             "Blue Striped Angelfish"
-                            ]
+                        ]
                         ),
                 Species(name="Swordfish",
                         calories_provided=2000,
@@ -471,7 +466,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="25-26.6",
                         food_sources=[
                             "Bicolour Angelfish"
-                            ]
+                        ]
                         ),
                 Species(name="Short-tail Stingray",
                         calories_provided=1450,
@@ -481,7 +476,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         food_sources=[
                             "Common Dolphinfish",
                             "Foxface Rabbitfish"
-                            ]
+                        ]
                         ),
                 Species(name="Sailfin Tang",
                         calories_provided=2500,
@@ -490,7 +485,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="25-26.6",
                         food_sources=[
                             "Rock Weed"
-                            ]
+                        ]
                         ),
                 Species(name="Queen Parrotfish",
                         calories_provided=3800,
@@ -507,7 +502,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                             "Blue Striped Angelfish",
                             "Queen Parrotfish",
                             "Common Eel Grass"
-                            ]
+                        ]
                         ),
                 Species(name="Powder Blue Tang",
                         calories_provided=3600,
@@ -517,7 +512,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         food_sources=[
                             "Stalked Kelp",
                             "Purple Hydrocoral"
-                            ]
+                        ]
                         ),
                 Species(name="Porcupine Pufferfish",
                         calories_provided=2600,
@@ -527,7 +522,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         food_sources=[
                             "Peacock's Tail Algae",
                             "Passer Angelfish"
-                            ]
+                        ]
                         ),
                 Species(name="Passer Angelfish",
                         calories_provided=2250,
@@ -536,7 +531,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="26.7-28.2",
                         food_sources=[
                             "Peacock's Tail Algae"
-                            ]
+                        ]
                         ),
                 Species(name="Pacific Tripletail",
                         calories_provided=2150,
@@ -545,7 +540,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="26.7-28.2",
                         food_sources=[
                             "Coral Beauty"
-                            ]
+                        ]
                         ),
                 Species(name="Olive Ridley Turtle",
                         calories_provided=3550,
@@ -555,7 +550,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         food_sources=[
                             "Green Zoanthid",
                             "Pacific Tripletail"
-                            ]
+                        ]
                         ),
                 Species(name="Northern Red Snapper",
                         calories_provided=1200,
@@ -567,7 +562,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                             "Sailfin Tang",
                             "Flame Angelfish",
                             "Eyestripe Surgeonfish"
-                            ]
+                        ]
                         ),
                 Species(name="Majestic Angelfish",
                         calories_provided=1150,
@@ -579,7 +574,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                             "Powder Blue Tang",
                             "Eyestripe Surgeonfish",
                             "Stalked Kelp"
-                            ]
+                        ]
                         ),
                 Species(name="Long Finned Pilot Whale",
                         calories_provided=3100,
@@ -588,7 +583,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="26.7-28.2",
                         food_sources=[
                             "Pacific Tripletail"
-                            ]
+                        ]
                         ),
                 Species(name="Indo-Pacific Sailfish",
                         calories_provided=1600,
@@ -598,8 +593,8 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         food_sources=[
                             "Pacific Tripletail",
                             "Coral Beauty",
-                            "Flameback  Angelfish"
-                            ]
+                            "Flameback Angelfish"
+                        ]
                         ),
                 Species(name="Hawksbill Sea Turtle",
                         calories_provided=2800,
@@ -612,7 +607,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                             "Foxface Rabbitfish",
                             "Common Eel Grass",
                             "Fire Coral"
-                            ]
+                        ]
                         ),
                 Species(name="Gem Tang",
                         calories_provided=1250,
@@ -628,7 +623,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         food_sources=[
                             "Widgeon Grass",
                             "Fire Coral"
-                            ]
+                        ]
                         ),
                 Species(name="Flameback Angelfish",
                         calories_provided=2900,
@@ -637,7 +632,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="26.7-28.2",
                         food_sources=[
                             "Green Zoanthid"
-                            ]
+                        ]
                         ),
                 Species(name="Flame Angelfish",
                         calories_provided=2200,
@@ -647,7 +642,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         food_sources=[
                             "Stalked Kelp",
                             "Rock Weed"
-                            ]
+                        ]
                         ),
                 Species(name="Eyestripe Surgeonfish",
                         calories_provided=1050,
@@ -657,7 +652,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         food_sources=[
                             "Stalked Kelp",
                             "Rock Weed"
-                            ]
+                        ]
                         ),
                 Species(name="Cuvier Beaked Whale",
                         calories_provided=1400,
@@ -667,7 +662,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         food_sources=[
                             "Coral Beauty",
                             "Flameback Angelfish"
-                            ]
+                        ]
                         ),
                 Species(name="Coral Trout",
                         calories_provided=1850,
@@ -678,7 +673,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                             "Bicolour Angelfish",
                             "Powder Blue Tang",
                             "Flame Angelfish"
-                            ]
+                        ]
                         ),
                 Species(name="Coral Beauty",
                         calories_provided=2650,
@@ -688,7 +683,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         food_sources=[
                             "Yellow Tube Sponge",
                             "Peacock's Tail Algae"
-                            ]
+                        ]
                         ),
                 Species(name="Common Dolphinfish",
                         calories_provided=2150,
@@ -697,14 +692,13 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="28.3-30",
                         food_sources=[
                             "Queen Parrotfish"
-                            ]
+                        ]
                         )
             ],
             [
-                'Fire Coral', 'Widgeon Grass', 'Common Eel Grass',
-                'Queen Parrotfish', 'Blue Striped Angelfish',
-                'Common Dolphinfish', 'Wahoo', 'Short-tail Stingray',
-                'Gem Tang'
+                'Purple Hydrocoral', 'Stalked Kelp', 'Blue Shark', 'Rock Weed',
+                'Powder Blue Tang', 'Flame Angelfish', 'Swordfish', 'Bicolour Angelfish',
+                'Northern Red Snapper', 'Eyestripe Surgeonfish'
             ]
         )
     ]
