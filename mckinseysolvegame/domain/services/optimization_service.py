@@ -1,3 +1,4 @@
+import copy
 from itertools import combinations, groupby
 from typing import List
 
@@ -8,23 +9,24 @@ class Solver:
 
     @staticmethod
     def find_sustainable_food_chain(species: List[Species]) -> OptimizationResult:
-        if not species:
+        species_copy = copy.deepcopy(species)
+        if not species_copy:
             return OptimizationResult([])
 
-        populate_food_sources(species)
+        populate_food_sources(species_copy)
 
-        species.sort(key=lambda x: x.depth_range)
+        species_copy.sort(key=lambda x: x.depth_range)
         grouped_species = {key: list(group) for key, group in groupby(
-            species, key=lambda x: x.depth_range)}
+            species_copy, key=lambda x: x.depth_range)}
 
         longest_sustainable_chain_per_depth_range = {}
-        for depth_range, species in grouped_species.items():
-            n = len(species)
-            species.sort(key=lambda x: x.calories_provided, reverse=True)
+        for depth_range, species_copy in grouped_species.items():
+            n = len(species_copy)
+            species_copy.sort(key=lambda x: x.calories_provided, reverse=True)
 
             optimal_list = []
             for length in range(1, n + 1):
-                for combination in combinations(species, length):
+                for combination in combinations(species_copy, length):
                     combination = list(combination)
                     if is_sustainable(combination) and len(combination) > len(optimal_list):
                         optimal_list = combination
