@@ -271,7 +271,7 @@ my_species = [
             food_sources=[
                 "Pacific Tripletail",
                 "Coral Beauty",
-                "Flameback  Angelfish"
+                "Flameback Angelfish"
                 ]),
     Species(name="Hawksbill Sea Turtle",
             calories_provided=2800,
@@ -376,15 +376,16 @@ The API will return a JSON object with the following format:
 ```json
 {
     "species": [
-        "Fire Coral", 
-        "Common Eel Grass", 
-        "Widgeon Grass",
-        "Queen Parrotfish", 
-        "Blue Striped Angelfish",
-        "Common Dolphinfish", 
-        "Wahoo", 
-        "Short-tail Stingray",
-        "Gem Tang"
+        "Purple Hydrocoral", 
+        "Stalked Kelp", 
+        "Blue Shark", 
+        "Rock Weed",
+        "Powder Blue Tang", 
+        "Flame Angelfish", 
+        "Swordfish", 
+        "Bicolour Angelfish",
+        "Northern Red Snapper", 
+        "Eyestripe Surgeonfish"
     ]
 }
 ```
