@@ -376,16 +376,14 @@ The API will return a JSON object with the following format:
 ```json
 {
     "species": [
-        "Purple Hydrocoral", 
-        "Stalked Kelp", 
-        "Blue Shark", 
-        "Rock Weed",
-        "Powder Blue Tang", 
-        "Flame Angelfish", 
-        "Swordfish", 
-        "Bicolour Angelfish",
-        "Northern Red Snapper", 
-        "Eyestripe Surgeonfish"
+        "Fire Coral", 
+        "Widgeon Grass", 
+        "Common Eel Grass", 
+        "Queen Parrotfish", 
+        "Blue Striped Angelfish", 
+        "Queen Angelfish", 
+        "Wahoo", 
+        "Gem Tang"
     ]
 }
 ```
