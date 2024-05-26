@@ -9,6 +9,7 @@ class Solver:
 
     @staticmethod
     def find_sustainable_food_chain(species: List[Species]) -> OptimizationResult:
+        maximum_food_chain_length = 8
         species_copy = copy.deepcopy(species)
         if not species_copy:
             return OptimizationResult([])
@@ -21,7 +22,7 @@ class Solver:
 
         longest_sustainable_chain_per_depth_range = {}
         for depth_range, species_copy in grouped_species.items():
-            n = len(species_copy)
+            n = min(maximum_food_chain_length, len(species_copy))
             species_copy.sort(key=lambda x: x.calories_provided, reverse=True)
 
             optimal_list = []

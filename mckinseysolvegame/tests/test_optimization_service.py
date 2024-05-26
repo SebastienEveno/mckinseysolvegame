@@ -696,9 +696,9 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         )
             ],
             [
-                'Purple Hydrocoral', 'Stalked Kelp', 'Blue Shark', 'Rock Weed',
-                'Powder Blue Tang', 'Flame Angelfish', 'Swordfish', 'Bicolour Angelfish',
-                'Northern Red Snapper', 'Eyestripe Surgeonfish'
+                'Fire Coral', 'Widgeon Grass', 'Common Eel Grass', 
+                'Queen Parrotfish', 'Blue Striped Angelfish', 'Queen Angelfish', 
+                'Wahoo', 'Gem Tang'
             ]
         )
     ]
