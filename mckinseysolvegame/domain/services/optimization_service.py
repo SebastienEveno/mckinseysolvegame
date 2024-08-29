@@ -90,7 +90,8 @@ def simulate_eating(species: List[Species]):
             half_calories_needed = species_dict[s.name]['calories_needed'] / 2
             species_dict[s.food_sources[0].name]['calories_provided'] -= half_calories_needed
             species_dict[s.food_sources[1].name]['calories_provided'] -= half_calories_needed
-            break  # only eat once
+            species_dict[s.name]['calories_needed'] = 0
+            continue  # only eat once
 
         for food in s.food_sources:
             if food.name in species_dict and species_dict[food.name]['calories_provided'] > species_dict[s.name]['calories_needed']:
