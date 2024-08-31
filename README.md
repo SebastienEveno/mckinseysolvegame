@@ -375,16 +375,43 @@ result.to_json()
 The API will return a JSON object with the following format:
 ```json
 {
-    "species": [
-        "Fire Coral", 
-        "Widgeon Grass", 
-        "Common Eel Grass", 
-        "Queen Parrotfish", 
-        "Blue Striped Angelfish", 
-        "Queen Angelfish", 
-        "Wahoo", 
-        "Gem Tang"
-    ]
+        "Fire Coral": {
+                "calories_needed": 0,
+                "calories_provided": 1150
+        },
+        "Widgeon Grass": {
+                "calories_needed": 0,
+                "calories_provided": 50
+        },
+        "Common Eel Grass": {
+                "calories_needed": 0,
+                "calories_provided": 400
+        },
+        "Queen Parrotfish": {
+                "calories_needed": 0,
+                "calories_provided": 700,
+                "eats": ["Fire Coral"]
+        },
+        "Blue Striped Angelfish": {
+                "calories_needed": 0,
+                "calories_provided": 1250,
+                "eats": ["Common Eel Grass"]
+        },
+        "Queen Angelfish": {
+                "calories_needed": 0,
+                "calories_provided": 2600,
+                "eats": ["Queen Parrotfish"]
+        },
+        "Wahoo": {
+                "calories_needed": 0,
+                "calories_provided": 1700,
+                "eats": ["Blue Striped Angelfish"]
+        },
+        "Gem Tang": {
+                "calories_needed": 0,
+                "calories_provided": 1250,
+                "eats": ["Widgeon Grass"]
+        }
 }
 ```
 This object contains the maximum number of species that can sustain, as well as the list of species names.
