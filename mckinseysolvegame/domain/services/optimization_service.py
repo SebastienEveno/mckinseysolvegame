@@ -2,7 +2,7 @@ import copy
 from itertools import combinations, groupby
 from typing import List
 
-from mckinseysolvegame.domain.models import Species, OptimizationResult
+from mckinseysolvegame.domain.models import Species
 
 
 class Solver:
