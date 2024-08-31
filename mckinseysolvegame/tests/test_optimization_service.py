@@ -9,7 +9,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
     [
         (
             [],
-            []
+            {}
         ),
         (
             [
@@ -20,7 +20,12 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="Temperature",
                         food_sources=[])
             ],
-            ['Species1']
+            {
+                'Species1': {
+                    'calories_needed': 0,
+                    'calories_provided': 1000
+                }
+            }
         ),
         (
             [
@@ -43,7 +48,20 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="Temperature",
                         food_sources=[])
             ],
-            ['Species3', 'Species2', 'Species1']
+            {
+                'Species3': {
+                    'calories_needed': 0,
+                    'calories_provided': 3000
+                },
+                'Species2': {
+                    'calories_needed': 0,
+                    'calories_provided': 2000
+                },
+                'Species1': {
+                    'calories_needed': 0,
+                    'calories_provided': 1000
+                }
+            }
         ),
         (
             [
@@ -72,7 +90,25 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="Temperature",
                         food_sources=["Producer1", "Producer2", "Producer3"])
             ],
-            ['Producer3', 'Producer2', 'Producer1', 'Animal1']
+            {
+                'Producer3': {
+                    'calories_needed': 0,
+                    'calories_provided': 2000
+                },
+                'Producer2': {
+                    'calories_needed': 0,
+                    'calories_provided': 2000
+                },
+                'Producer1': {
+                    'calories_needed': 0,
+                    'calories_provided': 1000
+                },
+                'Animal1': {
+                    'calories_needed': 0,
+                    'calories_provided': 100,
+                    'eats': ['Producer3']
+                }
+            }
         ),
         (
             # Test case: only one animal - only one food source but cannot eat
@@ -103,7 +139,20 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="Temperature",
                         food_sources=["Producer1"])
             ],
-            ['Producer3', 'Producer2', 'Producer1']
+            {
+                'Producer3': {
+                    'calories_needed': 0,
+                    'calories_provided': 3000
+                },
+                'Producer2': {
+                    'calories_needed': 0,
+                    'calories_provided': 2000
+                },
+                'Producer1': {
+                    'calories_needed': 0,
+                    'calories_provided': 1000
+                }
+            }
         ),
         (
             [
@@ -128,7 +177,22 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="Temperature",
                         food_sources=["Animal3"])
             ],
-            ['Animal1', 'Animal3', 'Animal4']
+            {
+                'Animal1': {
+                    'calories_needed': 0,
+                    'calories_provided': 100
+                },
+                'Animal3': {
+                    'calories_needed': 0,
+                    'calories_provided': 100,
+                    'eats': ['Animal1']
+                },
+                'Animal4': {
+                    'calories_needed': 0,
+                    'calories_provided': 350,
+                    'eats': ['Animal3']
+                }
+            }
         ),
         (
             [
@@ -169,7 +233,32 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="Temperature",
                         food_sources=["Animal5"]),
             ],
-            ['Animal1', 'Animal2', 'Animal4', 'Animal5', 'Animal6']
+            {
+                'Animal1': {
+                    'calories_needed': 0,
+                    'calories_provided': 100
+                },
+                'Animal2': {
+                    'calories_needed': 0,
+                    'calories_provided': 400,
+                    'eats': ['Animal1']
+                },
+                'Animal4': {
+                    'calories_needed': 0,
+                    'calories_provided': 50,
+                    'eats': ['Animal2']
+                },
+                'Animal5': {
+                    'calories_needed': 0,
+                    'calories_provided': 50,
+                    'eats': ['Animal4']
+                },
+                'Animal6': {
+                    'calories_needed': 0,
+                    'calories_provided': 150,
+                    'eats': ['Animal5']
+                }
+            }
         ),
         (
             # Test case: only one animal - calories needed higher than
@@ -200,7 +289,20 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="Temperature",
                         food_sources=["Producer1"])
             ],
-            ['Producer3', 'Producer2', 'Producer1']
+            {
+                'Producer3': {
+                    'calories_needed': 0,
+                    'calories_provided': 3000
+                },
+                'Producer2': {
+                    'calories_needed': 0,
+                    'calories_provided': 2000
+                },
+                'Producer1': {
+                    'calories_needed': 0,
+                    'calories_provided': 1000
+                }
+            }
         ),
         (
             # Test case: two animals - the two eat different producers
@@ -236,7 +338,30 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="Temperature",
                         food_sources=["Producer2"])
             ],
-            ['Producer3', 'Producer2', 'Producer1', 'Animal2', 'Animal1']
+            {
+                'Producer3': {
+                    'calories_needed': 0,
+                    'calories_provided': 3000
+                },
+                'Producer2': {
+                    'calories_needed': 0,
+                    'calories_provided': 100
+                },
+                'Producer1': {
+                    'calories_needed': 0,
+                    'calories_provided': 100
+                },
+                'Animal2': {
+                    'calories_needed': 0,
+                    'calories_provided': 200,
+                    'eats': ['Producer2']
+                },
+                'Animal1': {
+                    'calories_needed': 0,
+                    'calories_provided': 100,
+                    'eats': ['Producer1']
+                }
+            }
         ),
         (
             # Test case: two animals - Animal2 cannot eat Animal1
@@ -272,7 +397,25 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="Temperature",
                         food_sources=["Animal1"])
             ],
-            ['Producer3', 'Producer2', 'Producer1', 'Animal1']
+            {
+                'Producer3': {
+                    'calories_needed': 0,
+                    'calories_provided': 5000
+                },
+                'Producer2': {
+                    'calories_needed': 0,
+                    'calories_provided': 4050
+                },
+                'Producer1': {
+                    'calories_needed': 0,
+                    'calories_provided': 2950
+                },
+                'Animal1': {
+                    'calories_needed': 0,
+                    'calories_provided': 1000,
+                    'eats': ['Producer1']
+                }
+            }
         ),
         (
             # Test case: two animals - Animal2 can eat Animal1
@@ -308,7 +451,30 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="Temperature",
                         food_sources=["Animal1"])
             ],
-            ['Producer3', 'Producer2', 'Producer1', 'Animal1', 'Animal2']
+            {
+                'Producer3': {
+                    'calories_needed': 0,
+                    'calories_provided': 5000
+                },
+                'Producer2': {
+                    'calories_needed': 0,
+                    'calories_provided': 4050
+                },
+                'Producer1': {
+                    'calories_needed': 0,
+                    'calories_provided': 2950
+                },
+                'Animal1': {
+                    'calories_needed': 0,
+                    'calories_provided': 100,
+                    'eats': ['Producer1']
+                },
+                'Animal2': {
+                    'calories_needed': 0,
+                    'calories_provided': 800,
+                    'eats': ['Animal1']
+                },
+            }
         ),
         (
             # Test case: two animals - Animal2 can eat Animal1, Producer3
@@ -344,7 +510,30 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="Temperature",
                         food_sources=["Animal1", "Producer3"])
             ],
-            ['Producer3', 'Producer2', 'Producer1', 'Animal1', 'Animal2']
+            {
+                'Producer3': {
+                    'calories_needed': 0,
+                    'calories_provided': 4100
+                },
+                'Producer2': {
+                    'calories_needed': 0,
+                    'calories_provided': 4050
+                },
+                'Producer1': {
+                    'calories_needed': 0,
+                    'calories_provided': 2950
+                },
+                'Animal1': {
+                    'calories_needed': 0,
+                    'calories_provided': 1000,
+                    'eats': ['Producer1']
+                },
+                'Animal2': {
+                    'calories_needed': 0,
+                    'calories_provided': 800,
+                    'eats': ['Producer3']
+                },
+            }
         ),
         (
             [
@@ -695,11 +884,45 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         ]
                         )
             ],
-            [
-                'Fire Coral', 'Widgeon Grass', 'Common Eel Grass', 
-                'Queen Parrotfish', 'Blue Striped Angelfish', 'Queen Angelfish', 
-                'Wahoo', 'Gem Tang'
-            ]
+            {
+                'Fire Coral': {
+                    'calories_needed': 0,
+                    'calories_provided': 1150
+                },
+                'Widgeon Grass': {
+                    'calories_needed': 0,
+                    'calories_provided': 50
+                },
+                'Common Eel Grass': {
+                    'calories_needed': 0,
+                    'calories_provided': 400
+                },
+                'Queen Parrotfish': {
+                    'calories_needed': 0,
+                    'calories_provided': 700,
+                    'eats': ['Fire Coral']
+                },
+                'Blue Striped Angelfish': {
+                    'calories_needed': 0,
+                    'calories_provided': 1250,
+                    'eats': ['Common Eel Grass']
+                },
+                'Queen Angelfish': {
+                    'calories_needed': 0,
+                    'calories_provided': 2600,
+                    'eats': ['Queen Parrotfish']
+                },
+                'Wahoo': {
+                    'calories_needed': 0,
+                    'calories_provided': 1700,
+                    'eats': ['Blue Striped Angelfish']
+                },
+                'Gem Tang': {
+                    'calories_needed': 0,
+                    'calories_provided': 1250,
+                    'eats': ['Widgeon Grass']
+                }
+            }
         ),
         (
             [
@@ -782,11 +1005,49 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                         temperature_range="26.7-28.2",
                         food_sources=["Glass Squid", "Lanternfish", "Shrimp"])
             ],
-            ['Great White Shark', 'Blue Jellyfish', 'Green Sea Turtle', 
-             'Loggerhead Sea Turtle', 'Lanternfish', 'Red Moss', 'Sea Lettuce', 'Shrimp']
+            {
+                'Great White Shark': {
+                    'calories_needed': 0,
+                    'calories_provided': 6000,
+                    'eats': ['Green Sea Turtle', 'Loggerhead Sea Turtle']
+                    },
+                'Blue Jellyfish': {
+                    'calories_needed': 0,
+                    'calories_provided': 150,
+                    'eats': ['Sea Lettuce', 'Red Moss']
+                    }, 
+                'Green Sea Turtle': {
+                    'calories_needed': 0,
+                    'calories_provided': 2275,
+                    'eats': ['Lanternfish']
+                    }, 
+                'Loggerhead Sea Turtle': {
+                    'calories_needed': 0,
+                    'calories_provided': 2275,
+                    'eats': ['Blue Jellyfish']
+                    }, 
+                'Lanternfish': {
+                    'calories_needed': 0,
+                    'calories_provided': 300,
+                    'eats': ['Shrimp']
+                    }, 
+                'Red Moss': {
+                    'calories_needed': 0,
+                    'calories_provided': 775
+                    }, 
+                'Sea Lettuce': {
+                    'calories_needed': 0,
+                    'calories_provided': 775
+                    }, 
+                'Shrimp': {
+                    'calories_needed': 0,
+                    'calories_provided': 50,
+                    'eats': ['Red Moss', 'Sea Lettuce']
+                    }
+            }
         )
     ]
 )
 def test_find_sustainable_food_chain(species, expected_output):
     result = Solver.find_sustainable_food_chain(species)
-    assert result.species == expected_output
+    assert result == expected_output

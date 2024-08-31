@@ -2,17 +2,17 @@ import copy
 from itertools import combinations, groupby
 from typing import List
 
-from mckinseysolvegame.domain.models import Species, OptimizationResult
+from mckinseysolvegame.domain.models import Species
 
 
 class Solver:
 
     @staticmethod
-    def find_sustainable_food_chain(species: List[Species]) -> OptimizationResult:
+    def find_sustainable_food_chain(species: List[Species]) -> dict:
         maximum_food_chain_length = 8
         species_copy = copy.deepcopy(species)
         if not species_copy:
-            return OptimizationResult([])
+            return {}
 
         populate_food_sources(species_copy)
 
@@ -33,14 +33,13 @@ class Solver:
                         optimal_list = combination
 
             optimal_list.sort(key=lambda x: x.calories_provided, reverse=True)
-
-            longest_sustainable_chain_per_depth_range[depth_range] = [
-                s.name for s in optimal_list]
+            eating_steps = simulate_eating(optimal_list)
+            longest_sustainable_chain_per_depth_range[depth_range] = eating_steps
 
         _, max_value = max(
             longest_sustainable_chain_per_depth_range.items(), key=lambda x: len(x[1]))
 
-        return OptimizationResult(max_value)
+        return max_value
 
 
 def populate_food_sources(species: List[Species]) -> None:
@@ -87,16 +86,18 @@ def simulate_eating(species: List[Species]):
                 s.food_sources[1].name in species_dict and \
                 species_dict[s.food_sources[1].name]['calories_provided'] == species_dict[s.food_sources[0].name]['calories_provided'] and \
                 species_dict[s.food_sources[0].name]['calories_provided'] >= species_dict[s.name]['calories_needed'] / 2:
-            half_calories_needed = species_dict[s.name]['calories_needed'] / 2
+            half_calories_needed = int(species_dict[s.name]['calories_needed'] / 2)
             species_dict[s.food_sources[0].name]['calories_provided'] -= half_calories_needed
             species_dict[s.food_sources[1].name]['calories_provided'] -= half_calories_needed
             species_dict[s.name]['calories_needed'] = 0
+            species_dict[s.name]['eats'] = [s.food_sources[0].name, s.food_sources[1].name]
             continue  # only eat once
 
         for food in s.food_sources:
             if food.name in species_dict and species_dict[food.name]['calories_provided'] > species_dict[s.name]['calories_needed']:
                 species_dict[food.name]['calories_provided'] -= species_dict[s.name]['calories_needed']
                 species_dict[s.name]['calories_needed'] = 0
+                species_dict[s.name]['eats'] = [food.name]
                 break  # only eat once
 
     return species_dict
