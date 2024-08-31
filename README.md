@@ -368,8 +368,7 @@ my_species = [
 ```python
 from mckinseysolvegame import Solver
 
-result = Solver.find_sustainable_food_chain(my_species)
-result.to_json()
+Solver.find_sustainable_food_chain(my_species)
 ```
 
 The API will return a JSON object with the following format:
@@ -414,7 +413,7 @@ The API will return a JSON object with the following format:
         }
 }
 ```
-This object contains the maximum number of species that can sustain, as well as the list of species names.
+This dictionary contains the species name in order of eating, the food eaten as well as their final calories provided and needed.
 
 ## Contributing
 
