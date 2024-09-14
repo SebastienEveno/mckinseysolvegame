@@ -1010,44 +1010,44 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                     'calories_needed': 0,
                     'calories_provided': 6000,
                     'eats': ['Green Sea Turtle', 'Loggerhead Sea Turtle']
-                    },
+                },
                 'Blue Jellyfish': {
                     'calories_needed': 0,
                     'calories_provided': 150,
                     'eats': ['Sea Lettuce', 'Red Moss']
-                    }, 
+                },
                 'Green Sea Turtle': {
                     'calories_needed': 0,
                     'calories_provided': 2275,
                     'eats': ['Lanternfish']
-                    }, 
+                },
                 'Loggerhead Sea Turtle': {
                     'calories_needed': 0,
                     'calories_provided': 2275,
                     'eats': ['Blue Jellyfish']
-                    }, 
+                },
                 'Lanternfish': {
                     'calories_needed': 0,
                     'calories_provided': 300,
                     'eats': ['Shrimp']
-                    }, 
+                },
                 'Red Moss': {
                     'calories_needed': 0,
                     'calories_provided': 775
-                    }, 
+                },
                 'Sea Lettuce': {
                     'calories_needed': 0,
                     'calories_provided': 775
-                    }, 
+                },
                 'Shrimp': {
                     'calories_needed': 0,
                     'calories_provided': 50,
                     'eats': ['Red Moss', 'Sea Lettuce']
-                    }
+                }
             }
         )
     ]
 )
 def test_find_sustainable_food_chain(species, expected_output):
-    result = Solver.find_sustainable_food_chain(species)
+    result = Solver().find_sustainable_food_chain(species)
     assert result == expected_output

@@ -368,7 +368,7 @@ my_species = [
 ```python
 from mckinseysolvegame import Solver
 
-Solver.find_sustainable_food_chain(my_species)
+Solver().find_sustainable_food_chain(my_species)
 ```
 
 The API will return a JSON object with the following format:
