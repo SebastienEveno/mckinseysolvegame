@@ -1,5 +1,5 @@
 import pytest
-
+import pandas as pd
 from mckinseysolvegame.domain.models import Species
 from mckinseysolvegame.domain.services.optimization_service import Solver
 
@@ -1050,4 +1050,101 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
 )
 def test_find_sustainable_food_chain(species, expected_output):
     result = Solver().find_sustainable_food_chain(species)
+    assert result == expected_output
+
+
+@pytest.fixture
+def solver():
+    return Solver()
+
+
+@pytest.mark.parametrize(
+    "data, expected_output",
+    [
+        (
+            {
+                'name': [
+                    "Red Moss", "Sea Fan", "Sea Lettuce", "Blue Jellyfish", "Glass Squid",
+                    "Great White Shark", "Green Sea Turtle", "Lanternfish", "Loggerhead Sea Turtle",
+                    "Sea Urchin", "Shrimp", "Spadefish", "Swordfish"
+                ],
+                'calories_provided': [
+                    3000, 3500, 3000, 4500, 3850, 6000, 4400, 3300, 4400, 2100, 2750, 2100, 5250
+                ],
+                'calories_needed': [
+                    0, 0, 0, 3000, 3750, 4250, 3000, 2700, 4350, 3000, 1450, 2400, 3750
+                ],
+                'depth_range': [
+                    "0-10m", "0-10m", "0-10m", "0-10m", "0-10m", "0-10m", "0-10m", "0-10m", "0-10m",
+                    "0-10m", "0-10m", "0-10m", "0-10m"
+                ],
+                'temperature_range': [
+                    "26.7-28.2", "26.7-28.2", "26.7-28.2", "26.7-28.2", "26.7-28.2", "26.7-28.2",
+                    "26.7-28.2", "26.7-28.2", "26.7-28.2", "26.7-28.2", "26.7-28.2", "26.7-28.2", "26.7-28.2"
+                ],
+                'food_sources': [
+                    '', '', '', 'Sea Lettuce;Red Moss', 'Shrimp', 'Green Sea Turtle;Loggerhead Sea Turtle;Lanternfish',
+                    'Lanternfish;Sea Lettuce;Sea Urchin;Spadefish', 'Shrimp', 'Blue Jellyfish;Lanternfish;Sea Lettuce;Spadefish;Sea Urchin',
+                    'Sea Fan;Sea Lettuce', 'Red Moss;Sea Lettuce', 'Sea Fan', 'Glass Squid;Lanternfish;Shrimp'
+                ]
+            },
+            {
+                'Great White Shark': {
+                    'calories_needed': 0,
+                    'calories_provided': 6000,
+                    'eats': ['Green Sea Turtle', 'Loggerhead Sea Turtle']
+                },
+                'Blue Jellyfish': {
+                    'calories_needed': 0,
+                    'calories_provided': 150,
+                    'eats': ['Sea Lettuce', 'Red Moss']
+                },
+                'Green Sea Turtle': {
+                    'calories_needed': 0,
+                    'calories_provided': 2275,
+                    'eats': ['Lanternfish']
+                },
+                'Loggerhead Sea Turtle': {
+                    'calories_needed': 0,
+                    'calories_provided': 2275,
+                    'eats': ['Blue Jellyfish']
+                },
+                'Lanternfish': {
+                    'calories_needed': 0,
+                    'calories_provided': 300,
+                    'eats': ['Shrimp']
+                },
+                'Red Moss': {
+                    'calories_needed': 0,
+                    'calories_provided': 775
+                },
+                'Sea Lettuce': {
+                    'calories_needed': 0,
+                    'calories_provided': 775
+                },
+                'Shrimp': {
+                    'calories_needed': 0,
+                    'calories_provided': 50,
+                    'eats': ['Red Moss', 'Sea Lettuce']
+                }
+            }
+        ),
+        (
+            {
+                'name': [],
+                'calories_provided': [],
+                'calories_needed': [],
+                'depth_range': [],
+                'temperature_range': [],
+                'food_sources': []
+            },
+            {}
+        )
+    ]
+)
+def test_solve_from_dataframe(solver, data, expected_output):
+    df = pd.DataFrame(data)
+    result = solver.solve_from_dataframe(df)
+
+    # Check if the result matches the expected output
     assert result == expected_output

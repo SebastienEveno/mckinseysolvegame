@@ -1,6 +1,7 @@
 import copy
 from itertools import combinations, groupby
 from typing import List
+import pandas as pd
 
 from mckinseysolvegame.domain.models import Species
 
@@ -16,7 +17,6 @@ class Solver:
 
         for s in sorted(species, key=lambda x: x.calories_provided, reverse=True):
             if s.calories_needed == 0 or not s.food_sources:
-                # does not need to eat (producer) or cannot eat
                 continue
 
             s.food_sources.sort(
@@ -105,3 +105,21 @@ class Solver:
     @staticmethod
     def _is_species_sustainable(species: dict[str, int]) -> bool:
         return species['calories_needed'] == 0 and species['calories_provided'] > 0
+
+    def solve_from_dataframe(self, df: pd.DataFrame) -> dict:
+        # Convert the food_sources column to a list of strings
+        df['food_sources'] = df['food_sources'].apply(
+            lambda x: x.split(';') if pd.notna(x) else [])
+
+        species_list = []
+        for _, row in df.iterrows():
+            species = Species(
+                name=row['name'],
+                calories_provided=row['calories_provided'],
+                calories_needed=row['calories_needed'],
+                depth_range=row['depth_range'],
+                temperature_range=row['temperature_range'],
+                food_sources=row['food_sources']
+            )
+            species_list.append(species)
+        return self.find_sustainable_food_chain(species_list)
