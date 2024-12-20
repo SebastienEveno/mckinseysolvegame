@@ -36,8 +36,42 @@ pip install mckinseysolvegame
 
 ## Usage
 
-### Define the input species
+### Solve the game...
 
+#### ...from a csv file
+You can also solve the game using a DataFrame from a csv file. Here's an example:
+
+Csv file species.csv:
+```
+name,calories_provided,calories_needed,depth_range,temperature_range,food_sources
+Red Moss,3000,0,0-10m,26.7-28.2,
+Sea Fan,3500,0,0-10m,26.7-28.2,
+Sea Lettuce,3000,0,0-10m,26.7-28.2,
+Blue Jellyfish,4500,3000,0-10m,26.7-28.2,Sea Lettuce;Red Moss
+Glass Squid,3850,3750,0-10m,26.7-28.2, Shrimp
+Great White Shark,6000,4250,0-10m,26.7-28.2,Green Sea Turtle;Loggerhead Sea Turtle;Lanternfish
+Green Sea Turtle,4400,3000,0-10m,26.7-28.2,Lanternfish;Sea Lettuce;Sea Urchin;Spadefish
+Lanternfish,3300,2700,0-10m,26.7-28.2, Shrimp
+Loggerhead Sea Turtle,4400,4350,0-10m,26.7-28.2,Blue Jellyfish;Lanternfish;Sea Lettuce;Spadefish;Sea Urchin
+Sea Urchin,2100,3000,0-10m,26.7-28.2,Sea Fan;Sea Lettuce
+Shrimp,2750,1450,0-10m,26.7-28.2,Red Moss;Sea Lettuce
+Spadefish,2100,2400,0-10m,26.7-28.2,Sea Fan
+Swordfish,5250,3750,0-10m,26.7-28.2,Glass Squid;Lanternfish;Shrimp
+```
+
+```python
+import pandas as pd
+from mckinseysolvegame import Solver
+
+# read the CSV file into a DataFrame
+df = pd.read_csv('species.csv')
+
+solver = Solver()
+result = solver.solve_from_dataframe(df)
+print(result)
+```
+
+#### ...from a list of Species
 ```python
 from mckinseysolvegame import Species
 
@@ -363,7 +397,7 @@ my_species = [
 ]
 ```
 
-### Find the species that form a sustainable food chain
+Find the species that form a sustainable food chain:
 
 ```python
 from mckinseysolvegame import Solver
@@ -414,39 +448,6 @@ The API will return a JSON object with the following format:
 }
 ```
 This dictionary contains the species name in order of eating, the food eaten as well as their final calories provided and needed.
-
-## Solve from a DataFrame
-You can also solve the game using a DataFrame via a csv file. Here's an example:
-
-Csv file species.csv:
-```
-name,calories_provided,calories_needed,depth_range,temperature_range,food_sources
-Red Moss,3000,0,0-10m,26.7-28.2,
-Sea Fan,3500,0,0-10m,26.7-28.2,
-Sea Lettuce,3000,0,0-10m,26.7-28.2,
-Blue Jellyfish,4500,3000,0-10m,26.7-28.2,Sea Lettuce;Red Moss
-Glass Squid,3850,3750,0-10m,26.7-28.2, Shrimp
-Great White Shark,6000,4250,0-10m,26.7-28.2,Green Sea Turtle;Loggerhead Sea Turtle;Lanternfish
-Green Sea Turtle,4400,3000,0-10m,26.7-28.2,Lanternfish;Sea Lettuce;Sea Urchin;Spadefish
-Lanternfish,3300,2700,0-10m,26.7-28.2, Shrimp
-Loggerhead Sea Turtle,4400,4350,0-10m,26.7-28.2,Blue Jellyfish;Lanternfish;Sea Lettuce;Spadefish;Sea Urchin
-Sea Urchin,2100,3000,0-10m,26.7-28.2,Sea Fan;Sea Lettuce
-Shrimp,2750,1450,0-10m,26.7-28.2,Red Moss;Sea Lettuce
-Spadefish,2100,2400,0-10m,26.7-28.2,Sea Fan
-Swordfish,5250,3750,0-10m,26.7-28.2,Glass Squid;Lanternfish;Shrimp
-```
-
-```python
-import pandas as pd
-from mckinseysolvegame import Solver
-
-# read the CSV file into a DataFrame
-df = pd.read_csv('species.csv')
-
-solver = Solver()
-result = solver.solve_from_dataframe(df)
-print(result)
-```
 
 ## Contributing
 
