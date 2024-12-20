@@ -1,0 +1,14 @@
+name,calories_provided,calories_needed,depth_range,temperature_range,food_sources
+Red Moss,3000,0,0-10m,26.7-28.2,
+Sea Fan,3500,0,0-10m,26.7-28.2,
+Sea Lettuce,3000,0,0-10m,26.7-28.2,
+Blue Jellyfish,4500,3000,0-10m,26.7-28.2,Sea Lettuce;Red Moss
+Glass Squid,3850,3750,0-10m,26.7-28.2,Shrimp
+Great White Shark,6000,4250,0-10m,26.7-28.2,Green Sea Turtle;Loggerhead Sea Turtle;Lanternfish
+Green Sea Turtle,4400,3000,0-10m,26.7-28.2,Lanternfish;Sea Lettuce;Sea Urchin;Spadefish
+Lanternfish,3300,2700,0-10m,26.7-28.2,Shrimp
+Loggerhead Sea Turtle,4400,4350,0-10m,26.7-28.2,Blue Jellyfish;Lanternfish;Sea Lettuce;Spadefish;Sea Urchin
+Sea Urchin,2100,3000,0-10m,26.7-28.2,Sea Fan;Sea Lettuce
+Shrimp,2750,1450,0-10m,26.7-28.2,Red Moss;Sea Lettuce
+Spadefish,2100,2400,0-10m,26.7-28.2,Sea Fan
+Swordfish,5250,3750,0-10m,26.7-28.2,Glass Squid;Lanternfish;Shrimp
