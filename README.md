@@ -39,7 +39,7 @@ pip install mckinseysolvegame
 ### Solve the game...
 
 #### ...from a csv file
-You can also solve the game using a DataFrame from a csv file. Here's an example:
+You can solve the game using a DataFrame that you create from a csv file. Here's an example:
 
 Csv file species.csv:
 ```
@@ -72,6 +72,8 @@ print(result)
 ```
 
 #### ...from a list of Species
+You can also solve the game from a list of Species:
+
 ```python
 from mckinseysolvegame import Species
 
