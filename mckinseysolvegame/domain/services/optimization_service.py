@@ -107,6 +107,9 @@ class Solver:
         return species['calories_needed'] == 0 and species['calories_provided'] > 0
 
     def solve_from_dataframe(self, df: pd.DataFrame) -> dict:
+        # Ensure we don't modify the original dataframe
+        df = df.copy()
+
         # Convert the food_sources column to a list of strings
         df['food_sources'] = df['food_sources'].apply(
             lambda x: x.split(';') if pd.notna(x) else [])
