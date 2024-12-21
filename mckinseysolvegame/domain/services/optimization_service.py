@@ -108,14 +108,14 @@ class Solver:
 
     def solve_from_dataframe(self, df: pd.DataFrame) -> dict:
         # Ensure we don't modify the original dataframe
-        df = df.copy()
+        df_copy = df.copy()
 
         # Convert the food_sources column to a list of strings
-        df['food_sources'] = df['food_sources'].apply(
+        df_copy['food_sources'] = df_copy['food_sources'].apply(
             lambda x: x.split(';') if pd.notna(x) else [])
 
         species_list = []
-        for _, row in df.iterrows():
+        for _, row in df_copy.iterrows():
             species = Species(
                 name=row['name'],
                 calories_provided=row['calories_provided'],
