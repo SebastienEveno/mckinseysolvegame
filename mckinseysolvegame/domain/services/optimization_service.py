@@ -19,28 +19,31 @@ class Solver:
             if s.calories_needed == 0 or not s.food_sources:
                 continue
 
-            s.food_sources.sort(
-                key=lambda x: x.calories_provided, reverse=True)
+            current_food_sources = {k: v['calories_provided'] for k, v in species_dict.items(
+            ) if k in [food.name for food in s.food_sources]}
+            sorted_food_sources = dict(
+                sorted(current_food_sources.items(), key=lambda item: item[1], reverse=True))
 
-            if len(s.food_sources) > 1 and \
-                    s.food_sources[0].name in species_dict and \
-                    s.food_sources[1].name in species_dict and \
-                    species_dict[s.food_sources[1].name]['calories_provided'] == species_dict[s.food_sources[0].name]['calories_provided'] and \
-                    species_dict[s.food_sources[0].name]['calories_provided'] >= species_dict[s.name]['calories_needed'] / 2:
-                half_calories_needed = int(
-                    species_dict[s.name]['calories_needed'] / 2)
-                species_dict[s.food_sources[0].name]['calories_provided'] -= half_calories_needed
-                species_dict[s.food_sources[1].name]['calories_provided'] -= half_calories_needed
-                species_dict[s.name]['calories_needed'] = 0
-                species_dict[s.name]['eats'] = [
-                    s.food_sources[0].name, s.food_sources[1].name]
-                continue  # only eat once
+            if len(sorted_food_sources) > 1:
+                first_species_name = list(sorted_food_sources.keys())[0]
+                second_species_name = list(sorted_food_sources.keys())[1]
 
-            for food in s.food_sources:
-                if food.name in species_dict and species_dict[food.name]['calories_provided'] > species_dict[s.name]['calories_needed']:
-                    species_dict[food.name]['calories_provided'] -= species_dict[s.name]['calories_needed']
+                if species_dict[second_species_name]['calories_provided'] == species_dict[first_species_name]['calories_provided'] and \
+                        species_dict[first_species_name]['calories_provided'] >= species_dict[s.name]['calories_needed'] / 2:
+                    half_calories_needed = int(
+                        species_dict[s.name]['calories_needed'] / 2)
+                    species_dict[first_species_name]['calories_provided'] -= half_calories_needed
+                    species_dict[second_species_name]['calories_provided'] -= half_calories_needed
                     species_dict[s.name]['calories_needed'] = 0
-                    species_dict[s.name]['eats'] = [food.name]
+                    species_dict[s.name]['eats'] = [
+                        first_species_name, second_species_name]
+                    continue  # only eat once
+
+            for food_name in sorted_food_sources.keys():
+                if species_dict[food_name]['calories_provided'] > species_dict[s.name]['calories_needed']:
+                    species_dict[food_name]['calories_provided'] -= species_dict[s.name]['calories_needed']
+                    species_dict[s.name]['calories_needed'] = 0
+                    species_dict[s.name]['eats'] = [food_name]
                     break  # only eat once
 
         return species_dict

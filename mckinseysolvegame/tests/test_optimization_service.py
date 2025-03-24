@@ -1014,7 +1014,7 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                 'Blue Jellyfish': {
                     'calories_needed': 0,
                     'calories_provided': 150,
-                    'eats': ['Sea Lettuce', 'Red Moss']
+                    'eats': ['Red Moss', 'Sea Lettuce']
                 },
                 'Green Sea Turtle': {
                     'calories_needed': 0,
@@ -1043,6 +1043,145 @@ from mckinseysolvegame.domain.services.optimization_service import Solver
                     'calories_needed': 0,
                     'calories_provided': 50,
                     'eats': ['Red Moss', 'Sea Lettuce']
+                }
+            }
+        ),
+        (
+            [
+                Species(name="Azure",
+                        calories_provided=4200,
+                        calories_needed=0,
+                        depth_range="0-30m",
+                        temperature_range="28.3-30",
+                        food_sources=[]),
+                Species(name="Meadow",
+                        calories_provided=5100,
+                        calories_needed=0,
+                        depth_range="0-30m",
+                        temperature_range="28.3-30",
+                        food_sources=[]),
+                Species(name="Orange",
+                        calories_provided=4200,
+                        calories_needed=0,
+                        depth_range="0-30m",
+                        temperature_range="28.3-30",
+                        food_sources=[]),
+                Species(name="Aspen",
+                        calories_provided=2600,
+                        calories_needed=3300,
+                        depth_range="0-30m",
+                        temperature_range="28.3-30",
+                        food_sources=["Meadow", "Yellow"]),
+                Species(name="Flat",
+                        calories_provided=4100,
+                        calories_needed=3950,
+                        depth_range="0-30m",
+                        temperature_range="28.3-30",
+                        food_sources=[
+                            "Meadow",
+                            "Orange",
+                        ]),
+                Species(name="Giant",
+                        calories_provided=3600,
+                        calories_needed=4050,
+                        depth_range="0-30m",
+                        temperature_range="28.3-30",
+                        food_sources=[
+                            "Flat",
+                            "Spire", "Aspen", "Yellow", "Sling"
+                        ]),
+                Species(name="Marble",
+                        calories_provided=2100,
+                        calories_needed=3100,
+                        depth_range="0-30m",
+                        temperature_range="28.3-30",
+                        food_sources=[
+                            "Flat",
+                            "Spiral", "Rogue",
+                            "Velvet"
+                        ]),
+                Species(name="Rogue",
+                        calories_provided=2900,
+                        calories_needed=3500,
+                        depth_range="0-30m",
+                        temperature_range="28.3-30",
+                        food_sources=["Meadow", "Orange", "Azure"]),
+                Species(name="Velvet",
+                        calories_provided=1500,
+                        calories_needed=1800,
+                        depth_range="0-30m",
+                        temperature_range="28.3-30",
+                        food_sources=[
+                            "Azure"
+                        ]),
+                Species(name="Sling",
+                        calories_provided=1750,
+                        calories_needed=1200,
+                        depth_range="0-30m",
+                        temperature_range="28.3-30",
+                        food_sources=[
+                            "Spiral",
+                            "Velvet",
+                        ]),
+                Species(name="Spiral",
+                        calories_provided=2300,
+                        calories_needed=2500,
+                        depth_range="0-30m",
+                        temperature_range="28.3-30",
+                        food_sources=["Meadow", "Azure"]),
+                Species(name="Spire",
+                        calories_provided=2800,
+                        calories_needed=2600,
+                        depth_range="0-30m",
+                        temperature_range="28.3-30",
+                        food_sources=[
+                            "Azure",
+                            "Spiral", "Marble"
+                        ]),
+                Species(name="Yellow",
+                        calories_provided=4550,
+                        calories_needed=3000,
+                        depth_range="0-30m",
+                        temperature_range="28.3-30",
+                        food_sources=["Spiral", "Marble", "Velvet"])
+            ],
+            {
+                'Meadow': {
+                    'calories_needed': 0,
+                    'calories_provided': 1150
+                },
+                'Azure': {
+                    'calories_needed': 0,
+                    'calories_provided': 650
+                },
+                'Orange': {
+                    'calories_needed': 0,
+                    'calories_provided': 2450
+                },
+                'Flat': {
+                    'calories_needed': 0,
+                    'calories_provided': 50,
+                    'eats': ['Meadow']
+                },
+                'Giant': {
+                    'calories_needed': 0,
+                    'calories_provided': 3600,
+                    'eats': ['Flat']
+                },
+                'Rogue': {
+                    'calories_needed': 0,
+                    'calories_provided': 2900,
+                    'eats': ['Azure', 'Orange']
+                },
+                'Sling': {
+                    'calories_needed': 0,
+                    'calories_provided': 1750,
+                    'eats': ['Velvet']
+                },
+                'Velvet': {
+                    'calories_needed': 0,
+                    'calories_provided': 300,
+                    'eats': ['Azure']
                 }
             }
         )
@@ -1097,7 +1236,7 @@ def solver():
                 'Blue Jellyfish': {
                     'calories_needed': 0,
                     'calories_provided': 150,
-                    'eats': ['Sea Lettuce', 'Red Moss']
+                    'eats': ['Red Moss', 'Sea Lettuce']
                 },
                 'Green Sea Turtle': {
                     'calories_needed': 0,
